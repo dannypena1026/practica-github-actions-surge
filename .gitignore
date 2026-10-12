@@ -1,0 +1,7 @@
+# Archivos generados para despliegue
+/dist/
+# Dependencias locales
+/node_modules/
+# Archivos del editor
+.vscode/
+.DS_Store

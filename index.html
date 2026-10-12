@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Práctica de integración continua con GitHub Actions y Surge.sh, por Danny Peña Adames.">
+  <title>Integración Continua | Danny Peña Adames</title>
+  <style>
+    :root { color-scheme: dark; --bg:#080b18; --ink:#f6f8ff; --muted:#aebad0; --line:rgba(255,255,255,.14); --lime:#a8ffcf; --blue:#83b7ff; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin:0; min-height:100vh; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:radial-gradient(ellipse 55% 40% at 15% 10%,#243e6b99,transparent),radial-gradient(ellipse 45% 50% at 90% 80%,#126e6499,transparent),var(--bg); color:var(--ink); }
+    .container { width:min(1100px,calc(100% - 40px)); margin:auto; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:28px 0; border-bottom:1px solid var(--line); }
+    .brand { font-weight:800; letter-spacing:.5px; font-size:1.1rem; }
+    .brand span { color:var(--lime); }
+    .tag { color:var(--muted); font-size:.84rem; background:#ffffff0c; border:1px solid var(--line); padding:9px 13px; border-radius:99px; }
+    main { padding:83px 0 64px; }
+    .eyebrow { color:var(--lime); text-transform:uppercase; letter-spacing:2.8px; font-weight:800; font-size:.78rem; margin:0 0 18px; }
+    h1 { font-size:clamp(2.8rem,7vw,5.9rem); max-width:870px; line-height:1.05; letter-spacing:-.065em; margin:0 0 26px; }
+    h1 em { font-style:normal; background:linear-gradient(115deg,var(--lime),var(--blue)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .intro { color:var(--muted); font-size:clamp(1rem,2vw,1.25rem); line-height:1.7; max-width:710px; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:34px; }
+    .button { display:inline-block; padding:14px 20px; border-radius:12px; font-weight:750; text-decoration:none; transition:transform .2s; }
+    .button:hover { transform:translateY(-3px); }
+    .primary { background:var(--lime); color:#091b16; }
+    .secondary { border:1px solid var(--line); color:var(--ink); background:#ffffff0d; }
+    .panel { margin-top:78px; border:1px solid var(--line); border-radius:24px; padding:27px; background:linear-gradient(125deg,#ffffff12,#ffffff05); box-shadow:0 18px 50px #0004; }
+    .panel h2 { font-size:1.55rem; margin:0 0 12px; }
+    .panel > p { color:var(--muted); margin:0 0 22px; line-height:1.5; }
+    .flow { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .step { border:1px solid var(--line); border-radius:18px; padding:23px; background:#081325a8; min-height:185px; }
+    .step .number { font-size:.77rem; font-weight:800; letter-spacing:1px; color:var(--lime); }
+    .step h3 { margin:18px 0 8px; font-size:1.17rem; }
+    .step p { margin:0; color:var(--muted); line-height:1.55; font-size:.94rem; }
+    .status { display:inline-flex; align-items:center; gap:9px; padding:10px 15px; border-radius:99px; background:#a8ffcf16; border:1px solid #a8ffcf50; color:var(--lime); margin-top:24px; font-weight:700; font-size:.85rem; }
+    .dot { height:9px; width:9px; border-radius:100%; background:var(--lime); box-shadow:0 0 14px var(--lime); }
+    footer { padding:28px 0 37px; color:var(--muted); border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:.91rem; }
+    @media(max-width:700px) { main{padding-top:57px;} .flow{grid-template-columns:1fr;} .step{min-height:unset;} .panel{padding:20px;} .tag{font-size:.72rem;} }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">DP<span>.</span> DEV</div>
+      <div class="tag">ITLA · Matrícula 2025-1124</div>
+    </header>
+    <main>
+      <p class="eyebrow">Práctica de DevOps</p>
+      <h1>De mi código a la web, <em>automáticamente.</em></h1>
+      <p class="intro">Esta página demuestra cómo integrar Git, GitHub Actions y Surge.sh para publicar cambios automáticamente cada vez que se envía código a la rama principal del repositorio.</p>
+      <div class="actions">
+        <a class="button primary" href="#proceso">Conocer el proceso ↓</a>
+        <a class="button secondary" href="https://github.com/dannypena1026/practica-github-actions-surge" target="_blank" rel="noopener noreferrer">Ver repositorio ↗</a>
+      </div>
+      <section class="panel" id="proceso" aria-labelledby="flujo">
+        <h2 id="flujo">¿Cómo funciona el despliegue?</h2>
+        <p>Un flujo sencillo de integración y despliegue continuo.</p>
+        <div class="flow">
+          <article class="step"><span class="number">01 · GIT</span><h3>Subir cambios</h3><p>Realizo un <strong>git push</strong> para enviar los archivos a GitHub.</p></article>
+          <article class="step"><span class="number">02 · GITHUB ACTIONS</span><h3>Ejecutar el flujo</h3><p>Un archivo YAML inicia el trabajo de publicación automáticamente.</p></article>
+          <article class="step"><span class="number">03 · SURGE.SH</span><h3>Publicar la web</h3><p>Surge recibe el HTML y actualiza la página disponible en Internet.</p></article>
+        </div>
+        <div class="status"><span class="dot" aria-hidden="true"></span> Configuración CI/CD con GitHub Actions</div>
+      </section>
+    </main>
+    <footer><span>Creado por <strong>Danny Peña Adames</strong></span><span>Práctica académica · 2026</span></footer>
+  </div>
+</body>
+</html>
